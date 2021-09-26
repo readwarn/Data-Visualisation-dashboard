@@ -41,7 +41,7 @@ export default {
 
       google.charts.load("current", {
         packages: ["map"],
-        mapsApiKey: "AIzaSyBw8N9ZSCPG1sMJViIYp-cML-SHt_WdSio",
+        mapsApiKey: process.env.VUE_APP_G_KEY,
       });
 
       google.charts.setOnLoadCallback(drawMap);

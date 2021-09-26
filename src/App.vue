@@ -82,4 +82,8 @@ body {
   position: relative;
   overflow-x: hidden;
 }
+input,
+select {
+  font-size: 16px;
+}
 </style>
