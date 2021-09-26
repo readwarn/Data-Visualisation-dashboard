@@ -96,9 +96,15 @@
       </div>
     </div>
 
-    <button class="save" @click="saveUser">
-      SAVE
-    </button>
+    <div class="cta-container">
+      <button class="btn cancel" @click="$emit('close')">
+        Cancel
+      </button>
+
+      <button class="btn save" @click="saveUser">
+        SAVE
+      </button>
+    </div>
   </div>
 </template>
 
@@ -172,7 +178,7 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  z-index: 15;
   padding: 15px 30px;
 }
 
@@ -258,18 +264,31 @@ export default {
   margin-right: 10px;
 }
 
-.save {
+.cta-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.btn {
   outline: 0;
   border: 0;
-  background: #faa017;
-  height: 35px;
-  width: 100px;
-  display: block;
-  margin-left: auto;
-  border-radius: 20px;
+  background: 0;
   font-weight: 600;
   color: #113255;
   cursor: pointer;
+}
+
+.cancel {
+  font-size: 0.85rem;
+  margin-right: 20px;
+}
+
+.save {
+  background: #faa017;
+  height: 35px;
+  border-radius: 20px;
+  width: 100px;
 }
 
 .save :hover {

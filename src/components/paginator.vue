@@ -117,8 +117,8 @@ export default {
         if (this.isLastIndexInRange) {
           // if there is at least three pages to the right, shift the pageStartRange to the right by 3 units
           let temporal_start_range = this.pageRangeStart + 3;
-          temporal_start_range > 15
-            ? (this.pageRangeStart = 15)
+          temporal_start_range > 5
+            ? (this.pageRangeStart = 5)
             : (this.pageRangeStart = temporal_start_range);
         }
 
@@ -187,8 +187,8 @@ export default {
 }
 
 a.active-page {
-  background: #d5d5d5;
-  color: #554e11;
+  background: #faa017;
+  color: #113255;
 }
 
 .left-caret,

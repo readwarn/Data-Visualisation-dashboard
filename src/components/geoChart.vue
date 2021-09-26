@@ -55,6 +55,7 @@ export default {
           showTooltip: true,
           showInfoWindow: true,
           showLine: true,
+          mapType: "terrain",
         };
 
         const map = new google.visualization.Map(

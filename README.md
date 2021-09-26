@@ -1,34 +1,38 @@
-# suade-test
+# Suade Labs JS Challenge
 
-## Project setup
-```
-npm install
-```
+## Data Visualisation Dashboard
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+A [**visualisation dashboard**](https://secret-peak-58316.herokuapp.com/) of a list of people data, which allows users to
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- See a paginated list of people
+- Do a full text search to dynamically filter the results (searching on all fields)
+- Visualise the data as a pie chart
+- Visualise the data as a bar chart
+- Visualise the data as a geographical chart
+- Create dynamic interactions between charts (filtering from chart)
+- Edit the data with a modal
+- Shows a 404 page for invalid urls
 
-### Run your unit tests
-```
-npm run test:unit
-```
+### Live link
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
+[visualisation dashboard](https://secret-peak-58316.herokuapp.com/)
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### How to run the app locally
+
+1. Clone the repo 
+
+2. cd into suade-test folder i.e run `cd suade-test` 
+
+3. run `npm install`
+
+4. run `npm run serve`
+
+5. cd into suade-server folder i.e from the suade-test folder, run `cd suade-server`
+
+6. run `npm install`
+
+7. run `nodemon start`
+
+8. goto [http://localhost:8080/](http://localhost:8080/) to see the app live
+

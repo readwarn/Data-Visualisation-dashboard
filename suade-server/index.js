@@ -19,7 +19,7 @@ const fetchPeople = async() => {
 }
 
 app.get('/', (req, res) => {
-    res.json({ nam: "Suade, My new home hahac" });
+    res.json({ name: "Suade, My new home haha" });
 });
 
 app.get('/people', async(req, res) => {
