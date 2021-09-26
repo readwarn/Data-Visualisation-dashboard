@@ -33,14 +33,16 @@ A [**visualisation dashboard**](https://secret-peak-58316.herokuapp.com/) of a l
 4. run `npm run serve`
 
 5. cd into suade-server folder i.e from the suade-test folder, run `cd suade-server`
-
+   
 6. run `npm install`
 
-7. run `nodemon start`
+7. run `npm run start`
 
 8. goto [http://localhost:8080/](http://localhost:8080/) to see the app live
 
 ### To run a unit test
 
 From the suade-test folder, run `npm run test:unit`
+
+NOTE: The data structure was queried from a custom express-server to avoid cors error.
 
