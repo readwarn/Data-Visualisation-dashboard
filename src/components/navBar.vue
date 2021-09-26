@@ -70,6 +70,7 @@ export default {
 
 <style scoped>
 nav {
+  background: #d5d5d5;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -79,6 +80,7 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
 }
 
 nav a {
