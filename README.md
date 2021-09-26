@@ -13,6 +13,10 @@ A [**visualisation dashboard**](https://secret-peak-58316.herokuapp.com/) of a l
 - Edit the data with a modal
 - Shows a 404 page for invalid urls
 
+### Preview
+
+![App preview](https://github.com/readwarn/Data-Visualisation-dashboard/blob/master/src/assets/presentation.gif)
+
 ### Live link
 
 [visualisation dashboard](https://secret-peak-58316.herokuapp.com/)
@@ -35,4 +39,8 @@ A [**visualisation dashboard**](https://secret-peak-58316.herokuapp.com/) of a l
 7. run `nodemon start`
 
 8. goto [http://localhost:8080/](http://localhost:8080/) to see the app live
+
+### To run a unit test
+
+From the suade-test folder, run `npm run test:unit`
 
