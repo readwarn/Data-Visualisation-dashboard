@@ -72,8 +72,8 @@ export default {
         "Visualise the data as a pie chart",
         "Visualise the data as a bar chart",
         "Visualise the data as a geographical chart",
-        " Create dynamic interactions between charts (filtering from chart)",
-        "Edit the data with a table or modal",
+        "Create dynamic interactions between charts (filtering from chart)",
+        "Edit the data with a modal",
       ],
     };
   },
