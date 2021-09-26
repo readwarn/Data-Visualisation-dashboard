@@ -7,6 +7,9 @@ import Meta from "vue-meta";
 Vue.config.productionTip = false;
 Vue.use(Meta);
 
+let EventBus = new Vue();
+Vue.prototype.$bus = EventBus;
+
 new Vue({
     router,
     store,

@@ -60,7 +60,7 @@ export default {
     },
 
     iFirstIndexInRange() {
-      // checks if the current page is the firt in the page range
+      // checks if the current page is the first in the page range
       return this.getPageRange[0] === this.currentPage;
     },
 
@@ -70,7 +70,7 @@ export default {
   },
 
   mounted() {
-    //initializes the pages array based on the page number
+    //initializes the pages array based on the page route
     for (let i = 1; i <= this.pageNumber; i++) {
       this.pages.push(i);
     }
@@ -106,6 +106,7 @@ export default {
             : (this.pageRangeStart = temporal_start_range);
         }
 
+        // 'push' page to the left by 1 unit
         this.$router.push({
           name: "People",
           params: { page: this.currentPage - 1 },
@@ -114,13 +115,14 @@ export default {
 
       if (direction === +1 && this.currentPage < this.pages.length) {
         if (this.isLastIndexInRange) {
-          // if there is at least three pages to the left, shift the pageStartRange to the left by 3 units
+          // if there is at least three pages to the right, shift the pageStartRange to the right by 3 units
           let temporal_start_range = this.pageRangeStart + 3;
-          temporal_start_range > 5
-            ? (this.pageRangeStart = 5)
+          temporal_start_range > 15
+            ? (this.pageRangeStart = 15)
             : (this.pageRangeStart = temporal_start_range);
         }
 
+        // 'push' page to right by 1 unit
         this.$router.push({
           name: "People",
           params: { page: this.currentPage + 1 },

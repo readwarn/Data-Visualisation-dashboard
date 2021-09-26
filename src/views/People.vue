@@ -3,7 +3,7 @@
     <!-- EDIT PROFILE CARD -->
     <edit-profile-card
       v-if="show_edit_form"
-      @close="show_edit_form = false"
+      @close="saveEdition"
       :user="edit_user"
     />
 
@@ -23,6 +23,7 @@
         v-for="(user, index) in filteredPeople"
         :user="user"
         :key="index"
+        :profile_edited="user._id === edit_user._id && profile_edited"
         @edit="updateUser($event)"
       />
     </div>
@@ -41,7 +42,7 @@ import pageLoader from "@/components/pageLoader";
 import editProfileCard from "@/components/editProfileCard";
 
 export default {
-  name: "Home",
+  name: "People",
 
   components: {
     profileCard,
@@ -103,6 +104,7 @@ export default {
       loading: false,
       show_edit_form: false,
       edit_user: {},
+      profile_edited: false,
     };
   },
 
@@ -135,6 +137,16 @@ export default {
       let parameter_string = parameter.toString().toLowerCase();
       return parameter_string === this.getSearch;
     },
+
+    saveEdition() {
+      this.show_edit_form = false;
+      this.profile_edited = true;
+
+      //remove the edited-profile class from the profile-card after 3.5secs
+      setTimeout(() => {
+        this.profile_edited = false;
+      }, 3500);
+    },
   },
 };
 </script>
@@ -144,7 +156,7 @@ export default {
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -159,6 +171,24 @@ export default {
   width: 96%;
   margin: auto;
   position: relative;
+}
+
+.profiles::-webkit-scrollbar {
+  width: 7px;
+}
+
+.profiles::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.profiles::-webkit-scrollbar-thumb {
+  background: #92908e;
+  border-radius: 5px;
+}
+
+.profiles::-webkit-scrollbar-thumb:hover {
+  background: #646461;
 }
 
 .search-box {

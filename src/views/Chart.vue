@@ -4,7 +4,7 @@
     <nav-bar chart />
 
     <div class="chart-content">
-      <page-loader v-if="loading" />
+      <page-loader v-if="loading || map_loading" />
 
       <!-- FILTER TYPE -->
       <select
@@ -24,8 +24,12 @@
       </select>
 
       <bar-chart v-if="getChartType === 'bar'" :chartData="getRawPeopleData" />
+
       <pie-chart v-if="getChartType === 'pie'" :chartData="getRawPeopleData" />
+
       <geo-chart
+        @mapLoading="map_loading = true"
+        @mapLoaded="map_loading = false"
         :locations="generateLocationDataTable"
         v-if="getChartType === 'geo'"
       />
@@ -40,6 +44,13 @@ import geoChart from "@/components/geoChart";
 import navBar from "@/components/navBar";
 import pageLoader from "@/components/pageLoader";
 import { mapGetters, mapActions } from "vuex";
+import {
+  getKeyValue,
+  getPeopleData,
+  getPeopleLabels,
+  getPeopleDataset,
+  generateLocationDataTable,
+} from "../../src/services";
 
 export default {
   name: "Chart",
@@ -53,6 +64,7 @@ export default {
   },
 
   mounted() {
+    //get data from the server if not loaded already
     if (!this.getPeople.length) this.fetchPeople();
   },
 
@@ -64,32 +76,22 @@ export default {
     },
 
     getPeopleData() {
-      // THIS FEELS LIKE MAGIC, BUT I WILL TRY MY BEST TO WRITE A COMPREHENSIBLE COMMENT.
-      let people_data = {};
-      // this object holds a value:frequency pair, of each value of a specific person's key
-
-      // a value:frequency pair is created (with frequency of 1) only if the value doesnt have a frequency yet
-      // else, the frequency of that value is incremented by 1
-
-      this.getPeople.forEach((person) => {
-        people_data[this.getKeyValue(this.filter_type, person)] = people_data[
-          this.getKeyValue(this.filter_type, person)
-        ]
-          ? people_data[this.getKeyValue(this.filter_type, person)] + 1
-          : 1;
-      });
-      return people_data;
+      return getPeopleData(this.filter_type, this.getPeople);
     },
 
     getPeopleLabels() {
-      return Object.keys(this.getPeopleData);
+      return getPeopleLabels(this.getPeopleData);
     },
 
     getPeopleDataset() {
-      return Object.values(this.getPeopleData);
+      return getPeopleDataset(this.getPeopleData);
     },
 
     getRawPeopleData() {
+      // This data is passed to the bar/pie chart component.
+      // Labels is the array of unique value of a specific key in the people data.
+      // Data is the frequency of each label
+
       return {
         labels: this.getPeopleLabels,
         datasets: [
@@ -104,6 +106,7 @@ export default {
     },
 
     getBg() {
+      //generate a random background color for each label
       let bg = [];
       this.getPeopleLabels.forEach(() => {
         bg.push(this.generateRandomColor());
@@ -113,21 +116,13 @@ export default {
     },
 
     generateLocationDataTable() {
-      let locations = this.getPeople.map((person) => {
-        return [
-          person.location.latitude,
-          person.location.longitude,
-          person.name,
-        ];
-      });
-
-      locations.splice(0, 0, ["lat", "long", "name"]);
-      return locations;
+      return generateLocationDataTable(this.getPeople);
     },
   },
 
   data() {
     return {
+      map_loading: false,
       loading: false,
       chart_type: "bar",
       filter_type: "age",
@@ -162,26 +157,21 @@ export default {
     },
 
     generateRandomColor() {
-      let a = this.generateRandomNumber(255);
+      let r = this.generateRandomNumber(255);
+      let g = this.generateRandomNumber(255);
       let b = this.generateRandomNumber(255);
-      let c = this.generateRandomNumber(255);
-      return `rgb(${a},${b},${c})`;
+      return `rgb(${r},${g},${b})`;
     },
 
     getKeyValue(key, object) {
-      //this returns the value of an object, given a key
-      // useful to get value for nested keys
-      let prop_key = key.split(".");
-      return prop_key.reduce((obj, currentKey) => {
-        return obj == undefined ? obj : obj[currentKey];
-      }, object);
+      return getKeyValue(key, object);
     },
   },
 };
 </script>
 <style scoped>
 .chart-page {
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
 .chart-content {
@@ -195,8 +185,10 @@ export default {
 
 .filter-type {
   outline: 0;
-  border: 0;
-  font-size: 0.9rem;
+  border: 1.5px solid #fff;
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 0.9em;
   font-weight: 600;
   display: block;
   margin-left: auto;

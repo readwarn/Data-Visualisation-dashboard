@@ -1,10 +1,10 @@
 <template>
-  <div class="profile-card">
+  <div class="profile-card" :class="{ 'edited-profile': profile_edited }">
     <img
       src="https://s2.svgbox.net/materialui.svg?ic=edit&color=fff"
       class="edit-icon"
-      width="25"
-      height="25"
+      width="23"
+      height="23"
       @click="$emit('edit', user)"
     />
 
@@ -85,7 +85,7 @@
 export default {
   name: "profileCard",
 
-  props: ["user"],
+  props: ["user", "profile_edited"],
 };
 </script>
 
@@ -98,8 +98,19 @@ export default {
   color: #fff;
   margin-right: 4%;
   margin-bottom: 30px;
-  transition: transform ease-in-out 0.3s;
+  transition: border-color ease-in-out 0.3s, border-width ease-in-out 0.3s;
   position: relative;
+  border: 2px solid transparent;
+}
+
+.profile-card:hover {
+  border-color: #faa017;
+}
+
+.profile-card.edited-profile {
+  border-color: #2cb67d;
+  border-width: 3.5px;
+  /* state of the profile card just after it is edited */
 }
 
 .edit-icon {
@@ -111,10 +122,6 @@ export default {
 
 .profile-card:nth-child(4n) {
   margin-right: 0;
-}
-
-.profile-card:hover {
-  transform: scale(0.97);
 }
 
 .avatar {
@@ -180,6 +187,7 @@ export default {
   font-size: 0.9rem;
   margin-bottom: 2px;
 }
+
 .tag p:nth-child(2) {
   font-size: 0.75rem;
   color: #464f58;

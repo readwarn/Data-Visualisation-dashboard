@@ -24,7 +24,7 @@
         Chart
       </router-link>
 
-      <!-- THIS NAVLINK WILL ONLY SHOW ON THE CHART PAGE AND NOT PEOPLE PAGE -->
+      <!-- THIS SELECT INPUT WILL ONLY SHOW ON THE CHART PAGE AND NOT PEOPLE PAGE -->
       <select
         name="chart"
         id="chart"

@@ -36,7 +36,8 @@ export default {
   methods: {
     renderMap() {
       let google = window.google;
-      const self = this;
+      const vm = this;
+      vm.$emit("mapLoading");
 
       google.charts.load("current", {
         packages: ["map"],
@@ -48,19 +49,20 @@ export default {
       function drawMap() {
         // draw map with the geoChart locations prop
 
-        var data = google.visualization.arrayToDataTable(self.locations);
+        const data = google.visualization.arrayToDataTable(vm.locations);
 
-        var options = {
+        const options = {
           showTooltip: true,
           showInfoWindow: true,
           showLine: true,
         };
 
-        var map = new google.visualization.Map(
+        const map = new google.visualization.Map(
           document.getElementById("chart_div")
         );
 
         map.draw(data, options);
+        vm.$emit("mapLoaded");
       }
     },
   },
@@ -69,8 +71,8 @@ export default {
 
 <style scoped>
 .geo-chart {
-  height: 350px;
-  border: 2.5px solid #000;
+  height: 400px;
+  border: #faa017 2px solid;
 }
 
 #chart_div {

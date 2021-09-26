@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-edit">
+  <div class="profile-edit smooth-drop" @keyup.enter="saveUser">
     <div class="profile-heading">
       <h4>Profile</h4>
 
@@ -151,6 +151,12 @@ export default {
       //UPDATE THE USER DETAILS AND CLOSE THE MODAL
       this.updatePerson(this.getUpdatedUser);
       this.$emit("close");
+
+      let message = "User profile updated";
+      let type = "success";
+
+      // fires a 'new-toast' event
+      this.$bus.$emit("new-toast", { message, type });
     },
   },
 };
@@ -270,9 +276,23 @@ export default {
   filter: brightness(0.8);
 }
 
+.smooth-drop {
+  animation: animated-dropdown 0.55s ease-in-out;
+}
+
 @media screen and (max-width: 480px) {
   .profile-edit {
     width: 95%;
+  }
+}
+
+@keyframes animated-dropdown {
+  from {
+    top: 15%;
+  }
+
+  to {
+    top: 50%;
   }
 }
 </style>
