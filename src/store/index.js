@@ -34,7 +34,7 @@ export default new Vuex.Store({
     actions: {
         async getPeopleFromServer({ commit }) {
             try {
-                let response = await axios.get('https://tranquil-reaches-58141.herokuapp.com/people');
+                let response = await axios.get('http://127.0.0.1:3000/people');
                 commit("UPDATE_PEOPLE", response.data);
                 return response.data;
             } catch (err) {
