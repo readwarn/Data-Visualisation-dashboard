@@ -1,19 +1,19 @@
 {
-    "name": "suade-server",
-    "version": "1.0.0",
-    "description": "A single endpoint to fetch list of people",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index"
-    },
-    "author": "Rilwan",
-    "license": "ISC",
-    "dependencies": {
-        "axios": "^0.21.1",
-        "express": "^4.17.1"
-    },
-    "engines": {
-        "node": "12.16.3"
-    }
+  "name": "suade-server",
+  "version": "1.0.0",
+  "description": "A single endpoint to fetch list of people",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "Rilwan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "16.x"
+  }
 }
